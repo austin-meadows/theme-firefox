@@ -127,6 +127,18 @@ window,
   min-width: initial !important;
 }
 
+/* fixes up bookmarks toolbar */
+#PersonalToolbar {
+  padding-inline: 3px !important;
+  margin-top: -5px;
+}
+
+/* fixes bookmarks toolbar overlap */
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+  position: relative;
+}
+
 /* remove "padding" left and right from tabs */
 .titlebar-spacer {
   display: none !important;
