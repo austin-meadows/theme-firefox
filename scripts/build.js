@@ -22,6 +22,6 @@ console.log(`File written to ${outputFile}`);
 const {
   Profile0: { Path: ffProfilePath },
 } = ini.parse(fs.readFileSync(`${ffPath}/profiles.ini`, "utf-8"));
-
+fs.mkdirSync(`${ffPath}/${ffProfilePath}/chrome/`, { recursive: true });
 fs.copyFileSync(outputFile, `${ffPath}/${ffProfilePath}/chrome/userChrome.css`);
 console.log(`File written to ${ffProfilePath}`);

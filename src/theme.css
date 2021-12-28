@@ -39,16 +39,13 @@
 
   /* dynamic tab width settings */
   --uc-active-tab-width: clamp(50px, 18vw, 220px);
-  --uc-inactive-tab-width: clamp(50px, 15vw, 200px);
+  --uc-inactive-tab-width: 0px;
 
   /* if active always shows the tab close button */
   --show-tab-close-button: none; /* DEFAULT: -moz-inline-box; */
 
   /* if active only shows the tab close button on hover*/
   --show-tab-close-button-hover: -moz-inline-box; /* DEFAULT: -moz-inline-box; */
-
-  /* adds left and right margin to the container-tabs indicator */
-  --container-tabs-indicator-margin: 0px;
 }
 
 /*=============================================================================================*/
@@ -99,6 +96,7 @@
   --autocomplete-popup-hover-background: var(--uc-inverted-colour) !important;
 
   --tab-block-margin: 1px !important;
+  --urlbar-container-height: 44px;
 }
 
 window,
@@ -112,6 +110,21 @@ window,
   border: none !important;
   box-shadow: none !important;
   background: var(--uc-theme-colour) !important;
+}
+
+/* remove 1px white line on top of browser */
+#TabsToolbar {
+  margin-top: -1px;
+}
+
+/* centers hamburger menu while on small browser */
+.toolbarbutton-badge-stack {
+  margin-top: 3px;
+}
+
+/* makes inactive tabs icons */
+.tabbrowser-tab:not([pinned]) {
+  min-width: initial !important;
 }
 
 /* remove "padding" left and right from tabs */
@@ -238,38 +251,14 @@ window,
     margin: calc((var(--urlbar-min-height) * -1) - 8px)
       calc(100vw - var(--uc-urlbar-width)) 0 0 !important;
   }
-}
 
-/* Container Tabs */
-.identity-color-blue {
-  --identity-tab-color: var(--uc-identity-color-blue) !important;
-  --identity-icon-color: var(--uc-identity-color-blue) !important;
-}
-.identity-color-turquoise {
-  --identity-tab-color: var(--uc-identity-color-turquoise) !important;
-  --identity-icon-color: var(--uc-identity-color-turquoise) !important;
-}
-.identity-color-green {
-  --identity-tab-color: var(--uc-identity-color-green) !important;
-  --identity-icon-color: var(--uc-identity-color-green) !important;
-}
-.identity-color-yellow {
-  --identity-tab-color: var(--uc-identity-color-yellow) !important;
-  --identity-icon-color: var(--uc-identity-color-yellow) !important;
-}
-.identity-color-orange {
-  --identity-tab-color: var(--uc-identity-color-orange) !important;
-  --identity-icon-color: var(--uc-identity-color-orange) !important;
-}
-.identity-color-red {
-  --identity-tab-color: var(--uc-identity-color-red) !important;
-  --identity-icon-color: var(--uc-identity-color-red) !important;
-}
-.identity-color-pink {
-  --identity-tab-color: var(--uc-identity-color-pink) !important;
-  --identity-icon-color: var(--uc-identity-color-pink) !important;
-}
-.identity-color-purple {
-  --identity-tab-color: var(--uc-identity-color-purple) !important;
-  --identity-icon-color: var(--uc-identity-color-purple) !important;
+  /* centers url input box */
+  #urlbar-input-container {
+    margin-top: 1px;
+  }
+
+  /* centers hamburger menu while on single line */
+  .toolbarbutton-badge-stack {
+    margin-top: 3px;
+  }
 }
