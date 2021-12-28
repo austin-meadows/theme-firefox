@@ -35,7 +35,7 @@
   --uc-border-radius: 5px;
 
   /* dynamic url bar width settings */
-  --uc-urlbar-width: clamp(250px, 50vw, 600px);
+  --uc-urlbar-width: clamp(350px, 52vw, 600px);
 
   /* dynamic tab width settings */
   --uc-active-tab-width: clamp(50px, 18vw, 220px);
@@ -125,12 +125,6 @@ window,
 /* makes inactive tabs icons */
 .tabbrowser-tab:not([pinned]) {
   min-width: initial !important;
-}
-
-/* fixes up bookmarks toolbar */
-#PersonalToolbar {
-  padding-inline: 3px !important;
-  margin-top: -5px;
 }
 
 /* fixes bookmarks toolbar overlap */
@@ -256,6 +250,12 @@ window,
   /* move tabs bar over */
   #TabsToolbar {
     margin-left: var(--uc-urlbar-width) !important;
+  }
+
+  /* fixes up bookmarks toolbar */
+  #PersonalToolbar {
+    padding-inline: 3px !important;
+    margin-top: -5px;
   }
 
   /* move entire nav bar  */
