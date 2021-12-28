@@ -8,6 +8,8 @@ Based on the excellent [waterfall](https://github.com/crambaud/waterfall) Firefo
 
 - Allows theme colors to change on system light / dark mode changes.
 
+- Removes several minor customizations for a more "vanilla" Firefox / slimmer CSS file (which should hopefully help with compatibility with future updates)
+
 - Makes the dropdown auto suggestions more apparent
 
 - Gives 5px border radius to some UI elements
