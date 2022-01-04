@@ -10,13 +10,13 @@ The goal is for a simple one line Firefox theme with light modification to the b
 
 In comparison to [waterfall](https://github.com/crambaud/waterfall):
 
-- Removes several minor customizations for a more "vanilla" Firefox / slimmer CSS file (which should hopefully help with compatibility with future updates)
+- `userChrome.css` is minified with [csso](https://github.com/css/csso)
+
+- Removes several minor customizations for a more "vanilla" Firefox / slimmer CSS file (which should hopefully help with compatibility with future updates / builtin themes)
 
 - Removes color customizations in favor of using the user's chosen Firefox theme. This does make possible light / dark mode changes _(TBD: Some work to at least clean up the presentation of the URL bar while preserving colors)_
 
   - Note: this project did have light / dark mode changing with custom colors in a previous commit, if so desired
-
-- `userChrome.css` is minified with [csso](https://github.com/css/csso)
 
 # Scripts
 
