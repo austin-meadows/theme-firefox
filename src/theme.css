@@ -6,9 +6,6 @@
 */
 
 :root {
-  /* global border radius */
-  --uc-border-radius: 5px;
-
   /* dynamic url bar width settings */
   --uc-urlbar-width: clamp(350px, 52vw, 600px);
 
@@ -21,23 +18,8 @@
 
   /* if active only shows the tab close button on hover*/
   --show-tab-close-button-hover: -moz-inline-box; /* DEFAULT: -moz-inline-box; */
-}
-
-/*=============================================================================================*/
-
-/*---+---+---+---+---+---+
-| L | A | Y | O | U | T |
-+---+---+---+---+---+---*/
-
-/* No need to change anything below this comment.
-* Just tweak it if you want to tweak the overall layout. c: */
-
-:root {
-  --toolbarbutton-border-radius: var(--uc-border-radius) !important;
-  --arrowpanel-border-radius: var(--uc-border-radius) !important;
 
   --tab-block-margin: 0px !important;
-  --urlbar-container-height: 44px;
 }
 
 window,
@@ -57,19 +39,14 @@ window,
   margin-top: -1px;
 }
 
-/* centers hamburger menu while on small browser */
-.toolbarbutton-badge-stack {
-  margin-top: 3px;
-}
-
 /* makes inactive tabs icons */
 .tabbrowser-tab:not([pinned]) {
-  min-width: initial !important;
+  min-width: initial;
 }
 
 /* remove "padding" left and right from tabs */
 .titlebar-spacer {
-  display: none !important;
+  display: none;
 }
 
 /* remove gap after pinned tabs */
@@ -80,24 +57,28 @@ window,
 }
 
 /* remove tab shadow */
-.tabbrowser-tab > .tab-stack > .tab-background {
+.tab-background {
   box-shadow: none !important;
 }
 
 /* tab close button options */
 .tabbrowser-tab:not([pinned]) .tab-close-button {
-  display: var(--show-tab-close-button) !important;
+  display: var(--show-tab-close-button);
 }
 .tabbrowser-tab:not([pinned]):hover .tab-close-button {
-  display: var(--show-tab-close-button-hover) !important;
+  display: var(--show-tab-close-button-hover);
 }
 
 /* adaptive tab width */
 .tabbrowser-tab[selected][fadein]:not([pinned]) {
-  max-width: var(--uc-active-tab-width) !important;
+  max-width: var(--uc-active-tab-width);
 }
 .tabbrowser-tab[fadein]:not([selected]):not([pinned]) {
-  max-width: var(--uc-inactive-tab-width) !important;
+  max-width: var(--uc-inactive-tab-width);
+}
+
+#nav-bar {
+  background: transparent !important;
 }
 
 /* container tabs indicator */
@@ -106,37 +87,29 @@ window,
   > .tab-background
   > .tab-context-line {
   margin: -1px var(--container-tabs-indicator-margin) 0
-    var(--container-tabs-indicator-margin) !important;
-
-  border-radius: var(--tab-border-radius) !important;
+    var(--container-tabs-indicator-margin);
 }
 
 /* transition to oneline */
 @media (min-width: 1000px) {
   /* move tabs bar over */
   #TabsToolbar {
-    margin-left: var(--uc-urlbar-width) !important;
+    margin-left: var(--uc-urlbar-width);
   }
 
-  /* fixes up bookmarks toolbar */
-  #PersonalToolbar {
-    padding-inline: 3px !important;
-    margin-top: -2px;
+  /* removes border between hamburger menu and tabs */
+  #TabsToolbar .toolbar-items {
+    margin-left: -2px;
   }
 
   /* move entire nav bar  */
   #nav-bar {
+    padding-right: 5px;
     margin: calc((var(--urlbar-min-height) * -1) - 8px)
-      calc(100vw - var(--uc-urlbar-width)) 0 0 !important;
+      calc(100vw - var(--uc-urlbar-width)) 0 0;
   }
 
-  /* centers url input box */
-  #urlbar-input-container {
-    margin-top: 1px;
-  }
-
-  /* centers hamburger menu while on single line */
-  .toolbarbutton-badge-stack {
-    margin-top: 2px;
+  toolbar .toolbarbutton-1 {
+    padding: 3px !important;
   }
 }
