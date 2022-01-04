@@ -4,13 +4,17 @@ Modification of a modifcation of a modiftcation to Firefox's default browser chr
 
 Based on the excellent [waterfall](https://github.com/crambaud/waterfall) Firefox theme.
 
-The goal is for a simple one line Firefox theme with light modification to the browser css.
+The goal is for a simple one line Firefox theme with light modification to the browser css. I would like for it to work cross platform with one file, however, I have only tested Windows so far.
 
 # Modifications
 
+In comparison to [waterfall](https://github.com/crambaud/waterfall):
+
 - Removes several minor customizations for a more "vanilla" Firefox / slimmer CSS file (which should hopefully help with compatibility with future updates)
 
-- Removes color customizations in favor of using Firefox's default colors. This does make choosing themes possible, as well as allowing system light / dark mode changes
+- Removes color customizations in favor of using the user's chosen Firefox theme. This does make possible light / dark mode changes _(TBD: Some work to at least clean up the presentation of the URL bar while preserving colors)_
+
+  - Note: this project did have light / dark mode changing with custom colors in a previous commit, if so desired
 
 - `userChrome.css` is minified with [csso](https://github.com/css/csso)
 
