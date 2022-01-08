@@ -21,7 +21,7 @@ In comparison to [waterfall](https://github.com/crambaud/waterfall):
 # Scripts
 
 ```sh
-# Builds `src/theme.css` to `dist/userChrome.css`
-# Copies `dist/userChrome.css` to `[FF_PROFILE_PATH]/chrome/userChrome.css`
+# Builds `src/theme.css` to `build/userChrome.css`
+# Copies `build/userChrome.css` to `[FF_PROFILE_PATH]/chrome/userChrome.css`
 npm run build
 ```

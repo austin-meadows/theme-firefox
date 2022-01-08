@@ -47,6 +47,11 @@
   padding-block: 0 !important;
 }
 
+/* removes blue focus border that appears sometimes on urlbar */
+#urlbar-background {
+  outline: none !important;
+}
+
 /* removes border on bookmarks toolbar */
 #navigator-toolbox {
   border: none !important;
