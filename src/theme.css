@@ -6,11 +6,19 @@
 */
 
 :root {
-  /* dynamic url bar width settings */
-  --uc-urlbar-width: clamp(350px, 52vw, 600px);
+  /* customizes the one line browser height */
+  /* values less than 32px requires extra few pixels of negative top margin on urlbar, need to figure this out */
+  --c-urlbar-height: 32px;
+  --urlbar-height: 32px !important;
+  --urlbar-toolbar-height: 32px !important;
+  --urlbar-min-height: 32px !important;
+  --tab-min-height: 32px !important; /* make this the same as urlbar-height */
 
-  /* dynamic tab width settings */
-  --uc-active-tab-width: clamp(50px, 18vw, 220px);
+  /* url bar width settings */
+  --uc-urlbar-width: 320px;
+
+  /* tab width settings */
+  --uc-active-tab-width: 160px;
   --uc-inactive-tab-width: 0px;
 
   /* if active always shows the tab close button */
@@ -19,17 +27,19 @@
   /* if active only shows the tab close button on hover*/
   --show-tab-close-button-hover: -moz-inline-box; /* DEFAULT: -moz-inline-box; */
 
+  /* removes "pill" margin on tabs */
   --tab-block-margin: 0px !important;
 }
 
-window,
-#main-window,
-#toolbar-menubar,
-#TabsToolbar,
-#PersonalToolbar,
-#navigator-toolbox,
-#sidebar-box,
-#nav-bar {
+/* customize urlbar font size, default is 1.15.
+32px titlebar height looks better with 1em imo. */
+#urlbar,
+#searchbar {
+  font-size: 1em !important;
+}
+
+/* removes border on bookmarks toolbar */
+#navigator-toolbox {
   border: none !important;
   box-shadow: none !important;
 }
@@ -37,11 +47,6 @@ window,
 /* remove 1px white line on top of browser */
 #TabsToolbar {
   margin-top: -1px;
-}
-
-/* makes inactive tabs icons */
-.tabbrowser-tab:not([pinned]) {
-  min-width: initial;
 }
 
 /* remove "padding" left and right from tabs */
@@ -71,12 +76,46 @@ window,
 
 /* adaptive tab width */
 .tabbrowser-tab[selected][fadein]:not([pinned]) {
-  max-width: var(--uc-active-tab-width);
+  max-width: var(--uc-active-tab-width) !important;
 }
 .tabbrowser-tab[fadein]:not([selected]):not([pinned]) {
-  max-width: var(--uc-inactive-tab-width);
+  max-width: var(--uc-inactive-tab-width) !important;
 }
 
+/* locks down several heights to ensure one-line height customization
+keeps heights tabs / urlbar / etc stay consistent when changed from 32px */
+#TabsToolbar,
+#TabsToolbar .tab-background,
+#TabsToolbar .tab-content,
+#nav-bar {
+  height: var(--c-urlbar-height);
+}
+
+#tabbrowser-tabs,
+toolbar .toolbarbutton-1 {
+  max-height: var(--c-urlbar-height);
+  height: var(--c-urlbar-height);
+  width: var(--c-urlbar-height);
+}
+
+#urlbar[breakout]:not([breakout-extend]) {
+  top: calc((var(--c-urlbar-height) - var(--c-urlbar-height)) / 2) !important;
+  height: 100% !important;
+}
+
+toolbar .toolbarbutton-1 > .toolbarbutton-icon {
+  padding: 3px !important;
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px;
+  max-height: 22px;
+}
+
+.toolbarbutton-badge-stack {
+  padding: 0px !important;
+}
+
+/* removes extra color from urlbar area this can be removed if you want */
 #nav-bar {
   background: transparent !important;
 }
@@ -90,26 +129,35 @@ window,
     var(--container-tabs-indicator-margin);
 }
 
-/* transition to oneline */
+/* settings that make browser oneline on larger windows */
 @media (min-width: 1000px) {
-  /* move tabs bar over */
+  /* start tabs after URL bar area */
   #TabsToolbar {
-    margin-left: var(--uc-urlbar-width);
+    margin-left: calc(
+      var(--uc-urlbar-width) + (var(--c-urlbar-height) * 3 + 5px)
+    ) !important;
   }
 
-  /* removes border between hamburger menu and tabs */
-  #TabsToolbar .toolbar-items {
-    margin-left: -2px;
+  /* start urlbar at top of browser and make sure it's not 100% width  */
+  #urlbar[breakout] {
+    width: var(--uc-urlbar-width) !important;
   }
 
-  /* move entire nav bar  */
+  #urlbar-container {
+    min-width: auto !important;
+  }
+
   #nav-bar {
-    padding-right: 5px;
-    margin: calc((var(--urlbar-min-height) * -1) - 8px)
-      calc(100vw - var(--uc-urlbar-width)) 0 0;
+    margin-top: calc(var(--c-urlbar-height) * -1);
+    /* uses urlbar-height here because total button width is now based on browser
+    height, and there are 3 buttons (back/forward, menu) */
+    margin-right: calc(
+      100vw - var(--uc-urlbar-width) - (var(--c-urlbar-height) * 3 + 5px)
+    ) !important;
   }
 
+  /* horizontal padding between various buttons */
   toolbar .toolbarbutton-1 {
-    padding: 3px !important;
+    padding: 0 5px !important;
   }
 }
