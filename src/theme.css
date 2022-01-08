@@ -38,6 +38,15 @@
   font-size: 1em !important;
 }
 
+/* fixes focusing causing tiny bookmark thing */
+#urlbar,
+#urlbar-input-container,
+.urlbarView {
+  padding: 0 !important;
+  padding-inline: 0 !important;
+  padding-block: 0 !important;
+}
+
 /* removes border on bookmarks toolbar */
 #navigator-toolbox {
   border: none !important;
@@ -80,6 +89,11 @@
 }
 .tabbrowser-tab[fadein]:not([selected]):not([pinned]) {
   max-width: var(--uc-inactive-tab-width) !important;
+}
+
+/* fixes urlbar shifting slightly when focusing */
+#urlbar[breakout][breakout-extend] {
+  left: 0px !important;
 }
 
 /* locks down several heights to ensure one-line height customization
@@ -130,7 +144,7 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon {
 }
 
 /* settings that make browser oneline on larger windows */
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
   /* start tabs after URL bar area */
   #TabsToolbar {
     margin-left: calc(
