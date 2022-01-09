@@ -6,39 +6,59 @@
 */
 
 :root {
+  /***** Custom variables *****/
   /* customizes the one line browser height */
-  /* values less than 32px requires extra few pixels of negative top margin on urlbar, need to figure this out */
-  --c-urlbar-height: 32px;
-  --urlbar-height: 32px !important;
-  --urlbar-toolbar-height: 32px !important;
-  --urlbar-min-height: 32px !important;
-  --tab-min-height: 32px !important; /* make this the same as urlbar-height */
-
+  --custom-online-height: 32px;
   /* url bar width settings */
-  --uc-urlbar-width: 320px;
-
+  --custom-urlbar-width: 380px;
   /* tab width settings */
-  --uc-active-tab-width: 160px;
-  --uc-inactive-tab-width: 0px;
+  --custom-active-tab-width: 160px;
+  --custom-inactive-tab-width: 0px;
+  /* customize urlbar font size, default is 1.15 */
+  --custom-urlbar-font-size: 1em;
 
-  /* if active always shows the tab close button */
-  --show-tab-close-button: none; /* DEFAULT: -moz-inline-box; */
-
-  /* if active only shows the tab close button on hover*/
-  --show-tab-close-button-hover: -moz-inline-box; /* DEFAULT: -moz-inline-box; */
-
+  /***** Internal FF variables overrides *****/
+  /* several height overrides */
+  --urlbar-height: var(
+    --custom-online-height
+  ) !important; /*this may not stick in browser, but try anyways */
+  --urlbar-toolbar-height: var(--custom-online-height) !important;
+  --urlbar-min-height: var(--custom-online-height) !important;
+  --tab-min-height: var(--custom-online-height) !important;
   /* removes "pill" margin on tabs */
   --tab-block-margin: 0px !important;
+  --tab-border-radius: 0px !important;
+  --tabs-navbar-shadow-size: 0px !important;
 }
 
-/* customize urlbar font size, default is 1.15.
-32px titlebar height looks better with 1em imo. */
+#forward-button {
+  display: none !important;
+}
+
+/* "Shield" icon */
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+/* Hide urlbar elements when not active */
+
+#page-action-buttons {
+  display: none !important;
+}
+
+#urlbar:hover #page-action-buttons,
+#urlbar:active #page-action-buttons,
+#urlbar[focused] #page-action-buttons {
+  display: -moz-inline-box !important;
+}
+
+/* changes urlbar / urlbar dropdown font size */
 #urlbar,
 #searchbar {
-  font-size: 1em !important;
+  font-size: var(--custom-urlbar-font-size) !important;
 }
 
-/* fixes focusing causing tiny bookmark thing */
+/* fixes focusing causing tiny bookmark thing on smaller oneline heights */
 #urlbar,
 #urlbar-input-container,
 .urlbarView {
@@ -57,15 +77,9 @@
 /* removes border on bookmarks toolbar */
 #navigator-toolbox {
   border: none !important;
-  box-shadow: none !important;
 }
 
-/* remove 1px white line on top of browser */
-#TabsToolbar {
-  margin-top: -1px;
-}
-
-/* remove "padding" left and right from tabs */
+/* removes space that is typically to the right of the tabs on the window */
 .titlebar-spacer {
   display: none;
 }
@@ -84,18 +98,18 @@
 
 /* tab close button options */
 .tabbrowser-tab:not([pinned]) .tab-close-button {
-  display: var(--show-tab-close-button);
+  display: none;
 }
 .tabbrowser-tab:not([pinned]):hover .tab-close-button {
-  display: var(--show-tab-close-button-hover);
+  display: -moz-inline-box;
 }
 
 /* adaptive tab width */
 .tabbrowser-tab[selected][fadein]:not([pinned]) {
-  max-width: var(--uc-active-tab-width) !important;
+  max-width: var(--custom-active-tab-width) !important;
 }
 .tabbrowser-tab[fadein]:not([selected]):not([pinned]) {
-  max-width: var(--uc-inactive-tab-width) !important;
+  max-width: var(--custom-inactive-tab-width) !important;
 }
 
 /* fixes urlbar shifting slightly when focusing */
@@ -109,76 +123,49 @@ keeps heights tabs / urlbar / etc stay consistent when changed from 32px */
 #TabsToolbar .tab-background,
 #TabsToolbar .tab-content,
 #nav-bar {
-  height: var(--c-urlbar-height);
+  max-height: var(--custom-online-height);
 }
 
 #tabbrowser-tabs,
 toolbar .toolbarbutton-1 {
-  max-height: var(--c-urlbar-height);
-  height: var(--c-urlbar-height);
-  width: var(--c-urlbar-height);
+  max-height: var(--custom-online-height);
 }
 
-#urlbar[breakout]:not([breakout-extend]) {
-  top: calc((var(--c-urlbar-height) - var(--c-urlbar-height)) / 2) !important;
-  height: 100% !important;
+#urlbar-container,
+#search-container {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
 }
 
-toolbar .toolbarbutton-1 > .toolbarbutton-icon {
-  padding: 3px !important;
-  width: 22px !important;
-  height: 22px !important;
-  max-width: 22px;
-  max-height: 22px;
+#urlbar {
+  /* fixes urlbar being shifted down some, may be unnecessary */
+  top: 0px !important;
+  /* fixes focusing adding some width */
+  width: 100% !important;
 }
 
-.toolbarbutton-badge-stack {
-  padding: 0px !important;
+/* fixes some extra height with oneline height < 32px? */
+#titlebar {
+  appearance: none !important;
 }
 
-/* removes extra color from urlbar area this can be removed if you want */
+/* removes background color from urlbar area */
 #nav-bar {
-  background: transparent !important;
-}
-
-/* container tabs indicator */
-.tabbrowser-tab[usercontextid]
-  > .tab-stack
-  > .tab-background
-  > .tab-context-line {
-  margin: -1px var(--container-tabs-indicator-margin) 0
-    var(--container-tabs-indicator-margin);
+  background: 0 0 !important;
 }
 
 /* settings that make browser oneline on larger windows */
 @media (min-width: 900px) {
-  /* start tabs after URL bar area */
   #TabsToolbar {
-    margin-left: calc(
-      var(--uc-urlbar-width) + (var(--c-urlbar-height) * 3 + 5px)
-    ) !important;
-  }
-
-  /* start urlbar at top of browser and make sure it's not 100% width  */
-  #urlbar[breakout] {
-    width: var(--uc-urlbar-width) !important;
+    margin-left: var(--custom-urlbar-width) !important;
   }
 
   #urlbar-container {
-    min-width: auto !important;
+    min-width: 0px !important;
   }
 
   #nav-bar {
-    margin-top: calc(var(--c-urlbar-height) * -1);
-    /* uses urlbar-height here because total button width is now based on browser
-    height, and there are 3 buttons (back/forward, menu) */
-    margin-right: calc(
-      100vw - var(--uc-urlbar-width) - (var(--c-urlbar-height) * 3 + 5px)
-    ) !important;
-  }
-
-  /* horizontal padding between various buttons */
-  toolbar .toolbarbutton-1 {
-    padding: 0 5px !important;
+    margin-top: calc(var(--custom-online-height) * -1);
+    margin-right: calc(100vw - var(--custom-urlbar-width)) !important;
   }
 }
