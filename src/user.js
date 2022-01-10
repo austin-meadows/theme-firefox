@@ -1,7 +1,7 @@
 // personal
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.startup.homepage.abouthome_cache.enabled", true);
-user_pref("browser.tabs.tabMinWidth", 64);
+user_pref("browser.tabs.tabMinWidth", 70);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 user_pref("accessibility.force_disabled", 1);
