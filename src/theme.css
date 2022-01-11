@@ -91,6 +91,14 @@
 }
 
 /*************** Hide things ***************/
+/* hide tab close button unless hovered */
+.tabbrowser-tab .tab-close-button {
+  display: none !important;
+}
+.tabbrowser-tab:hover .tab-close-button {
+  display: -moz-inline-box !important;
+}
+
 /* hide forward button when not available */
 #forward-button[disabled="true"] {
   display: none !important;
