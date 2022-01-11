@@ -1,140 +1,65 @@
 /*!
-  Original Authors:
+  Horizon
+
+  Original authors & inspiration:
+    - lr-tech, Oneline Proton: https://github.com/lr-tech/OnelineProton
     - crambaud, waterfall: https://github.com/crambaud/waterfall
-    - andreasgrafen, cascade: https://github.com/andreasgrafen/cascade
-    - migueravila, SimpleFox: https://github.com/migueravila/SimpleFox
+
+  Check out their awesome work!
+
+  More inspiration: https://firefoxcss-store.github.io/
 */
 
+/*************** Variables and variable overrides ***************/
 :root {
-  /***** Custom variables *****/
-  /* customizes the one line browser height */
-  --custom-online-height: 32px;
+  /***** Custom Variables *****/
+  /* customizes the browser's line height */
+  --custom-line-height: 32px;
+
   /* url bar width settings */
   --custom-urlbar-width: 380px;
+
   /* tab width settings */
-  --custom-active-tab-width: 160px;
-  --custom-inactive-tab-width: 0px;
-  /* customize urlbar font size, default is 1.15 */
-  --custom-urlbar-font-size: 1em;
+  --custom-active-tab-width: 175px;
+  --custom-inactive-tab-width: 0px; /* this is good to use in conjunction with about:config `browser.tabs.tabMinWidth` */
+
+  /* customize urlbar font size */
+  --custom-urlbar-font-size: 1em; /* default: 1.15 */
 
   /***** Internal FF variables overrides *****/
   /* several height overrides */
-  --urlbar-height: var(
-    --custom-online-height
-  ) !important; /*this may not stick in browser, but try anyways */
-  --urlbar-toolbar-height: var(--custom-online-height) !important;
-  --urlbar-min-height: var(--custom-online-height) !important;
-  --tab-min-height: var(--custom-online-height) !important;
-  /* removes "pill" margin on tabs */
+  --urlbar-height: var(--custom-line-height) !important;
+  --urlbar-toolbar-height: var(--custom-line-height) !important;
+  --urlbar-min-height: var(--custom-line-height) !important;
+  --tab-min-height: var(--custom-line-height) !important;
+  /* removes tabs "pill" margin. */
   --tab-block-margin: 0px !important;
+  /* removes rounded borders on various items */
   --tab-border-radius: 0px !important;
+  --toolbarbutton-border-radius: 0px !important;
+  --urlbar-icon-border-radius: 0px !important;
+  /* technically tabs have no shadow now but this also fixes new tab icon height */
   --tabs-navbar-shadow-size: 0px !important;
+  /* removes padding next to back button */
+  --toolbar-start-end-padding: 0px !important;
 }
 
-#forward-button {
-  display: none !important;
-}
-
-/* "Shield" icon */
-#tracking-protection-icon-container {
-  display: none !important;
-}
-
-/* Hide urlbar elements when not active */
-
-#page-action-buttons {
-  display: none !important;
-}
-
-#urlbar:hover #page-action-buttons,
-#urlbar:active #page-action-buttons,
-#urlbar[focused] #page-action-buttons {
-  display: -moz-inline-box !important;
-}
-
-/* changes urlbar / urlbar dropdown font size */
-#urlbar,
-#searchbar {
-  font-size: var(--custom-urlbar-font-size) !important;
-}
-
-/* fixes focusing causing tiny bookmark thing on smaller oneline heights */
-#urlbar,
-#urlbar-input-container,
-.urlbarView {
-  padding: 0 !important;
-  padding-inline: 0 !important;
-  padding-block: 0 !important;
-}
-
-/* removes blue focus border that appears sometimes on urlbar */
-/* also removes box shadow when focused */
-#urlbar-background {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* removes border on bookmarks toolbar */
-#navigator-toolbox {
-  border: none !important;
-}
-
-/* removes space that is typically to the right of the tabs on the window */
-.titlebar-spacer {
-  display: none;
-}
-
-/* remove gap after pinned tabs */
-#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
-  > #tabbrowser-arrowscrollbox
-  > .tabbrowser-tab[first-visible-unpinned-tab] {
-  margin-inline-start: 0 !important;
-}
-
-/* remove tab shadow */
-.tab-background {
-  box-shadow: none !important;
-}
-
-/* tab close button options */
-.tabbrowser-tab:not([pinned]) .tab-close-button {
-  display: none;
-}
-.tabbrowser-tab:not([pinned]):hover .tab-close-button {
-  display: -moz-inline-box;
-}
-
-/* adaptive tab width */
-.tabbrowser-tab[selected][fadein]:not([pinned]) {
-  max-width: var(--custom-active-tab-width) !important;
-}
-.tabbrowser-tab[fadein]:not([selected]):not([pinned]) {
-  max-width: var(--custom-inactive-tab-width) !important;
-}
-
-/* fixes urlbar shifting slightly when focusing */
-#urlbar[breakout][breakout-extend] {
-  left: 0px !important;
-}
-
-/* locks down several heights to ensure one-line height customization
-keeps heights tabs / urlbar / etc stay consistent when changed from 32px */
+/*************** Line Height stuff ***************/
 #TabsToolbar,
 #TabsToolbar .tab-background,
 #TabsToolbar .tab-content,
-#nav-bar {
-  max-height: var(--custom-online-height);
-}
-
+#nav-bar,
 #tabbrowser-tabs,
-toolbar .toolbarbutton-1 {
-  max-height: var(--custom-online-height);
+.toolbarbutton-1 {
+  max-height: var(--custom-line-height);
+  height: var(--custom-line-height);
 }
 
 #urlbar-container,
 #search-container {
   margin-inline: 0 !important;
   padding-inline: 0 !important;
+  padding-block: 0 !important;
 }
 
 #urlbar {
@@ -149,23 +74,97 @@ toolbar .toolbarbutton-1 {
   appearance: none !important;
 }
 
-/* removes background color from urlbar area */
-#nav-bar {
-  background: 0 0 !important;
-}
-
-/* settings that make browser oneline on larger windows */
-@media (min-width: 900px) {
+/* media query wrapper can be removed if you want one line on all browser widths */
+@media (min-width: 850px) {
   #TabsToolbar {
     margin-left: var(--custom-urlbar-width) !important;
+  }
+
+  #nav-bar {
+    margin-top: calc(var(--custom-line-height) * -1);
+    margin-right: calc(100vw - var(--custom-urlbar-width)) !important;
   }
 
   #urlbar-container {
     min-width: 0px !important;
   }
+}
 
-  #nav-bar {
-    margin-top: calc(var(--custom-online-height) * -1);
-    margin-right: calc(100vw - var(--custom-urlbar-width)) !important;
-  }
+/*************** Hide things ***************/
+/* hide forward button when not available */
+#forward-button[disabled="true"] {
+  display: none !important;
+}
+
+/* hide Shield Icon */
+#tracking-protection-icon-container {
+  display: none !important;
+}
+
+/*************** Misc. Tab Styling ***************/
+/* Adjusts focused and unfocused tab widths */
+.tabbrowser-tab[selected] {
+  max-width: var(--custom-active-tab-width) !important;
+}
+.tabbrowser-tab {
+  max-width: var(--custom-inactive-tab-width) !important;
+}
+
+/* removes space that is typically to the right of the tabs on the window */
+.titlebar-spacer {
+  display: none;
+}
+
+/* remove tab shadow */
+.tab-background {
+  box-shadow: none !important;
+}
+
+/* remove gap after pinned tabs */
+.tabbrowser-tab {
+  margin-inline-start: 0 !important;
+}
+
+/*************** Misc. URL / Navbar Styling ***************/
+/* removes background color from urlbar area */
+#nav-bar {
+  background: 0 0 !important;
+}
+
+/* fixes urlbar shifting slightly when focusing */
+#urlbar[breakout][breakout-extend] {
+  left: 0px !important;
+}
+
+/* changes urlbar / urlbar dropdown font size */
+#urlbar,
+#searchbar {
+  font-size: var(--custom-urlbar-font-size) !important;
+}
+
+/* removes blue focus border that appears sometimes on urlbar */
+/* also removes box shadow when focused */
+#urlbar-background {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* removes some extra pixels of border around url input */
+#searchbar,
+#urlbar-input-container {
+  border: none !important;
+}
+
+/* removes border on bookmarks toolbar */
+#navigator-toolbox {
+  border: none !important;
+}
+
+/* fixes focusing causing tiny bookmark thing on smaller line heights */
+#urlbar,
+#urlbar-input-container,
+.urlbarView {
+  padding: 0 !important;
+  padding-inline: 0 !important;
+  padding-block: 0 !important;
 }

@@ -1,27 +1,29 @@
 # Description
 
-Modification of a modifcation of a modiftcation to Firefox's default browser chrome.
+A userChrome.css theme for Firefox that makes the browser controls use one horizontal line.
 
-Based on the excellent [waterfall](https://github.com/crambaud/waterfall) Firefox theme.
+The goal is for a light one line Firefox theme with little modification to the browser css. I would like for it to work cross platform, however, I have only tested Windows so far.
 
-The goal is for a simple one line Firefox theme with light modification to the browser css. I would like for it to work cross platform with one file, however, I have only tested Windows so far.
+Some code and inspiration from:
 
-# Modifications
+- lr-tech, Oneline Proton: https://github.com/lr-tech/OnelineProton
+- crambaud, waterfall: https://github.com/crambaud/waterfall
 
-In comparison to [waterfall](https://github.com/crambaud/waterfall):
+# Installation
 
-- `userChrome.css` is minified with [csso](https://github.com/css/csso)
+1. In `about:config`, set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`.
 
-- Removes several minor customizations for a more "vanilla" Firefox / slimmer CSS file (which should hopefully help with compatibility with future updates / builtin themes)
+2. Copy either `build/userChrome.css` or `src/theme.css` to the `chrome` folder in your Firefox Profile location. You can create this folder if it does not exist.
 
-- Removes color customizations in favor of using the user's chosen Firefox theme. This does make possible light / dark mode changes _(TBD: Some work to at least clean up the presentation of the URL bar while preserving colors)_
+Optionally, you may also modify `browser.tabs.tabMinWidth` to adjust unfocused tab widths in `about:config`.
 
-  - Note: this project did have light / dark mode changing with custom colors in a previous commit, if so desired
+Alternatively, you may also clone this repo and use the `npm` script to copy the files for you.
 
 # Scripts
 
 ```sh
 # Builds `src/theme.css` to `build/userChrome.css`
+# Copies `src/user.js` to `[FF_PROFILE_PATH]/user.js`
 # Copies `build/userChrome.css` to `[FF_PROFILE_PATH]/chrome/userChrome.css`
 npm run build
 ```
