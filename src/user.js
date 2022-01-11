@@ -1,23 +1,10 @@
 // personal
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-user_pref("browser.startup.homepage.abouthome_cache.enabled", true);
 user_pref("browser.tabs.tabMinWidth", 72);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 user_pref("accessibility.force_disabled", 1);
-user_pref("network.http.http3.enabled", true);
 user_pref("security.family_safety.mode", 0);
-user_pref("app.normandy.api_url", "");
-user_pref("app.normandy.enabled", false);
-user_pref("app.normandy.optoutstudies.enabled", false);
-user_pref("app.normandy.user_id", "");
-user_pref("app.shield.optoutstudies.enabled", false);
-user_pref("beacon.enabled", false);
-user_pref("datareporting.healthreport.service.enabled", false);
-user_pref("datareporting.healthreport.uploadEnabled", false);
-user_pref("datareporting.policy.dataSubmissionEnabled", false);
-user_pref("toolkit.coverage.opt-out", true);
-user_pref("toolkit.telemetry.enabled", false);
 user_pref("extensions.pocket.enabled", false);
 user_pref("extensions.getAddons.showPane", false);
 
@@ -63,6 +50,6 @@ user_pref("mousewheel.system_scroll_override.horizontal.factor", 200);
 user_pref("mousewheel.system_scroll_override.vertical.factor", 200);
 user_pref("mousewheel.transaction.timeout", 1500);
 user_pref("toolkit.scrollbox.horizontalScrollDistance", 4);
-user_pref("toolkit.scrollbox.verticalScrollDistance", 3);
+user_pref("toolkit.scrollbox.verticalScrollDistance", 4);
 user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 1250);
 user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 1000);
