@@ -20,7 +20,7 @@
   --custom-urlbar-width: 380px;
 
   /* tab width settings */
-  --custom-active-tab-width: 175px;
+  --custom-active-tab-width: 185px;
   --custom-inactive-tab-width: 0px; /* this is good to use in conjunction with about:config `browser.tabs.tabMinWidth` */
 
   /* customize urlbar font size */
@@ -206,7 +206,7 @@
 }
 /*************** OS Fixes / Customizations ***************/
 /* For macOS */
-@media not (-moz-os-version: windows-win8) {
+@media not (-moz-windows-default-theme) {
   /* moves macOS window controls to right */
   .titlebar-buttonbox-container {
     -moz-box-ordinal-group: 1 !important;
@@ -219,7 +219,7 @@
   }
 }
 
-@media (-moz-os-version: windows-win8) {
+@media (-moz-windows-default-theme) {
   /*
     optional - makes browser controls not centered, gives a bit of space to drag the
     browser in case there's a lot of tabs
@@ -232,6 +232,6 @@
 
   /* reduces size of window controls and gives a little horizontal padding */
   .titlebar-button {
-    padding: calc(var(--custom-active-tab-width) / 8) 7px !important;
+    padding: calc(var(--custom-line-height) / 8) 7px !important;
   }
 }
