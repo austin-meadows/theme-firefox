@@ -1,4 +1,5 @@
 import { minify } from "csso";
+import { homedir } from "os";
 import fs from "fs";
 import ini from "ini";
 
@@ -6,8 +7,16 @@ import ini from "ini";
 const inputCSS = "src/theme.css";
 const userJS = "src/user.js";
 const outputCSS = "build/userChrome.css";
-// (may work for macOS)
-const ffPath = `${process.env.APPDATA}/Mozilla/Firefox`;
+
+let ffPath;
+if (process.platform === "win32") {
+  ffPath = `${process.env.APPDATA}/Mozilla/Firefox`;
+} else if (process.platform === "darwin") {
+  ffPath = `${homedir()}/Library/Application Support/Firefox`;
+} else {
+  console.log("Building not added for this OS, update build.js");
+  return;
+}
 
 //// CSS File Creation
 const input = fs.readFileSync(inputCSS, "utf8");
