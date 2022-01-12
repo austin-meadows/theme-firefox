@@ -40,8 +40,11 @@
   --urlbar-icon-border-radius: 0px !important;
   /* technically tabs have no shadow now but this also fixes new tab icon height */
   --tabs-navbar-shadow-size: 0px !important;
-  /* removes padding next to back button */
+  /* removes padding next to back button and hamburger menu */
   --toolbar-start-end-padding: 0px !important;
+  /* doesn't seem to visually change anything but removes extra unused padding on buttons */
+  --toolbarbutton-outer-padding: 0px !important;
+  --urlbar-container-padding: 0px !important;
 }
 
 /*************** Line Height stuff ***************/
@@ -50,8 +53,12 @@
 #TabsToolbar .tab-content,
 #nav-bar,
 #tabbrowser-tabs,
-.toolbarbutton-1 {
+.toolbarbutton-1:not(.chromeclass-toolbar-additional),
+.toolbarbutton-badge-stack,
+.urlbar-page-action,
+.urlbar-input-box {
   max-height: var(--custom-line-height);
+  min-height: var(--custom-line-height);
   height: var(--custom-line-height);
 }
 
@@ -116,6 +123,7 @@
 }
 .tabbrowser-tab {
   max-width: var(--custom-inactive-tab-width) !important;
+  padding-inline: 0px !important; /* removes black space between tabs */
 }
 
 /* removes space that is typically to the right of the tabs on the window */
@@ -175,4 +183,30 @@
   padding: 0 !important;
   padding-inline: 0 !important;
   padding-block: 0 !important;
+}
+
+/* give soem space to the left of the back button on the window */
+#back-button {
+  margin-left: 5px !important;
+}
+/* fixes inconsistent widths and paddings on buttons */
+.toolbarbutton-badge-stack,
+.toolbarbutton-1 > .toolbarbutton-icon,
+.urlbar-page-action,
+#urlbar-go-button,
+.search-go-button {
+  padding: var(--toolbarbutton-inner-padding)
+    calc(var(--toolbarbutton-inner-padding) / 2) !important; /* normally just toolbar-inner-padding */
+}
+.toolbarbutton-1 > .toolbarbutton-icon,
+.urlbar-page-action,
+#urlbar-go-button,
+.search-go-button {
+  width: calc(var(--toolbarbutton-inner-padding) + 16px) !important;
+}
+/*************** OS Fixes ***************/
+/* moves macOS window controls to right */
+.titlebar-buttonbox-container {
+  -moz-box-ordinal-group: 1 !important;
+  margin-right: 10px;
 }

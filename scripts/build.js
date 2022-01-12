@@ -15,7 +15,7 @@ if (process.platform === "win32") {
   ffPath = `${homedir()}/Library/Application Support/Firefox`;
 } else {
   console.log("Building not added for this OS, update build.js");
-  return;
+  exit;
 }
 
 //// CSS File Creation
