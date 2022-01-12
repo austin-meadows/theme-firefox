@@ -234,4 +234,9 @@
   .titlebar-button {
     padding: calc(var(--custom-line-height) / 8) 7px !important;
   }
+
+  /* fixes weird maximize window */
+  #main-window[sizemode="maximized"] #toolbar-menubar {
+    height: 8px !important;
+  }
 }
