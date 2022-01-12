@@ -232,6 +232,6 @@
 
   /* reduces size of window controls and gives a little horizontal padding */
   .titlebar-button {
-    padding: 5px 7px !important;
+    padding: calc(var(--custom-active-tab-width) / 8) 7px !important;
   }
 }
