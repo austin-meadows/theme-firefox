@@ -208,5 +208,5 @@
 /* moves macOS window controls to right */
 .titlebar-buttonbox-container {
   -moz-box-ordinal-group: 1 !important;
-  margin-right: 10px;
+  -moz-box-align: baseline !important;
 }
