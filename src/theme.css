@@ -204,9 +204,19 @@
 .search-go-button {
   width: calc(var(--toolbarbutton-inner-padding) + 16px) !important;
 }
-/*************** OS Fixes ***************/
+/*************** OS Fixes / Customizations ***************/
 /* moves macOS window controls to right */
 .titlebar-buttonbox-container {
   -moz-box-ordinal-group: 1 !important;
-  -moz-box-align: baseline !important;
+  -moz-box-align: center !important;
+}
+
+/* windows button height fix from above change, but not macOS */
+.titlebar-buttonbox:not(:-moz-locale-dir(ltr)) {
+  height: var(--custom-line-height);
+}
+
+/* gives right margin to macOS */
+.titlebar-buttonbox:-moz-locale-dir(ltr) {
+  margin-right: 5px !important;
 }
