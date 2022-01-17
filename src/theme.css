@@ -52,6 +52,7 @@
 #TabsToolbar .tab-background,
 #TabsToolbar .tab-content,
 #nav-bar,
+#PlacesToolbar,
 #tabbrowser-tabs,
 .toolbarbutton-1:not(.chromeclass-toolbar-additional),
 .toolbarbutton-badge-stack,
@@ -102,7 +103,7 @@
 .tabbrowser-tab .tab-close-button {
   display: none !important;
 }
-.tabbrowser-tab:hover .tab-close-button {
+.tabbrowser-tab:hover:not([pinned="true"]) .tab-close-button {
   display: -moz-inline-box !important;
 }
 
@@ -185,25 +186,10 @@
   padding-block: 0 !important;
 }
 
-/* give soem space to the left of the back button on the window */
-#back-button {
-  margin-left: 5px !important;
+#PlacesChevron {
+  margin: 0 !important;
 }
-/* fixes inconsistent widths and paddings on buttons */
-.toolbarbutton-badge-stack,
-.toolbarbutton-1 > .toolbarbutton-icon,
-.urlbar-page-action,
-#urlbar-go-button,
-.search-go-button {
-  padding: var(--toolbarbutton-inner-padding)
-    calc(var(--toolbarbutton-inner-padding) / 2) !important; /* normally just toolbar-inner-padding */
-}
-.toolbarbutton-1 > .toolbarbutton-icon,
-.urlbar-page-action,
-#urlbar-go-button,
-.search-go-button {
-  width: calc(var(--toolbarbutton-inner-padding) + 16px) !important;
-}
+
 /*************** OS Fixes / Customizations ***************/
 /* For macOS */
 @media not (-moz-windows-default-theme) {
