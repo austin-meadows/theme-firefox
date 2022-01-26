@@ -1,6 +1,5 @@
 // personal
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-user_pref("browser.tabs.tabMinWidth", 64);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("extensions.formautofill.heuristics.enabled", false);
 user_pref("accessibility.force_disabled", 1);
@@ -51,5 +50,5 @@ user_pref("mousewheel.system_scroll_override.vertical.factor", 200);
 user_pref("mousewheel.transaction.timeout", 1500);
 user_pref("toolkit.scrollbox.horizontalScrollDistance", 4);
 user_pref("toolkit.scrollbox.verticalScrollDistance", 5);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 1000);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 750);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 750);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 250);

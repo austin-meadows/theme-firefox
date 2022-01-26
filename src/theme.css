@@ -20,8 +20,7 @@
   --custom-urlbar-width: 380px;
 
   /* tab width settings */
-  --custom-active-tab-width: 185px;
-  --custom-inactive-tab-width: 0px; /* this is good to use in conjunction with about:config `browser.tabs.tabMinWidth` */
+  --custom-tab-width: 165px;
 
   /* customize urlbar font size */
   --custom-urlbar-font-size: 1em; /* default: 1.15 */
@@ -118,12 +117,9 @@
 }
 
 /*************** Misc. Tab Styling ***************/
-/* Adjusts focused and unfocused tab widths */
-.tabbrowser-tab[selected] {
-  max-width: var(--custom-active-tab-width) !important;
-}
-.tabbrowser-tab {
-  max-width: var(--custom-inactive-tab-width) !important;
+/* Adjusts tab widths */
+.tabbrowser-tab[fadein]:not([pinned="true"]) {
+  max-width: var(--custom-tab-width) !important;
   padding-inline: 0px !important; /* removes black space between tabs */
 }
 
